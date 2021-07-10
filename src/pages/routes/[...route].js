@@ -10,33 +10,19 @@ import {IconBoxOne} from "../../components/IconBox";
 import {connect} from "react-redux";
 import {getProducts} from "../../lib/product";
 import {TenantService} from "../../modules/engine/services/tenant.service";
-import {CmsRoute} from "../../modules/cms/cms.route";
+import {CmsRoute} from "../../modules/cms/models/cms.route";
+import CmsPageLayout from "../../layouts/CmsPageLayout";
 
-function Route({cmsRoute}) {
-  return (
-    <div>
-      {/* hero slider */}
-      {/*<HeroSliderOne heroSliderData={heroSliderOneData}/>*/}
-      {/* double banner */}
-      <BannerTwo/>
-      {/* tab product */}
-      {/*<ProductTab
-        title="Exclusive Products"
-        newProducts={newProducts}
-        bestSellerProducts={bestSellerProducts}
-        featuredProducts={featuredProducts}
-        saleProducts={saleProducts}
-      />*/}
-      {/* single banner */}
-      <BannerOne/>
-      {/* product slider */}
-      {/*<ProductSliderOne title="Featured Products" products={featuredProducts}/>
-       testimonial
-      <TestimonialOne testimonialData={testimonialOneData}/>*/}
-      {/* icon box */}
-      <IconBoxOne/>
-    </div>
-  );
+function Route({pageData}) {
+  if (pageData) {
+    const page = pageData.contents.page;
+    return (
+      <div className={'page-' + page.name}>
+        <CmsPageLayout page={page}/>
+      </div>
+    );
+  }
+  return <div>Loading...</div>;
 }
 
 export async function getStaticPaths() {
@@ -51,7 +37,8 @@ export async function getStaticProps({params}) {
   await cmsRoute.loadPageData();
 
   // Pass post data to the page via props
-  return {props: {cmsRoute: {}}};
+  return {props: {pageData: cmsRoute.pageData}};
 }
 
 export default Route;
+

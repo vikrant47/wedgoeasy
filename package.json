@@ -34,6 +34,8 @@
   },
   "devDependencies": {
     "redux-devtools-extension": "^2.13.8",
-    "sass": "^1.26.9"
+    "sass": "^1.26.9",
+    "eslint": "5.15.3",
+    "lint-staged": "8.1.5"
   }
 }

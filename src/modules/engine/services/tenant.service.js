@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '../../../lib/request';
 
 export class TenantService {
   /** @type instance TenantService*/
@@ -32,9 +32,10 @@ export class TenantService {
     return window.location.origin + this.getBaseTenantUrl();
   }
 
+  /**@deprecated*/
   getBaseTenantUrl() {
     const tenantCode = this.tenant.code;
-    return '/tenant/' + tenantCode;
+    return '';
   }
 
   /** Make request to current tenant*/

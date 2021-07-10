@@ -5,14 +5,19 @@ module.exports = {
     node: true,
     es6: true
   },
+  plugins: ["react-hooks"],
   parserOptions: {
-    "sourceType": "module"
+    "sourceType": "module",
+    'parser': 'babel-eslint',
+    'ecmaVersion': 'es7',
   },
   extends: ['eslint:recommended'],
 
   // add your custom rules here
   //it is base on https://github.com/vuejs/eslint-config-vue
   rules: {
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
       'before': true,

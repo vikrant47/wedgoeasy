@@ -1,10 +1,10 @@
-import { MongoParser } from '@/modules/engine/services/mongo.parser';
-import { TenantService } from '@/modules/engine/services/tenant.service';
+import {MongoParser} from './mongo.parser';
+import {TenantService} from './tenant.service';
 import * as _ from 'lodash';
 
 export class RestQuery {
   static mongoParser = new MongoParser();
-
+ 
   static toQueryBuilderRules(query) {
     const clonedQuery = JSON.parse(JSON.stringify(query));
     let mongoQuery = clonedQuery.where;
@@ -12,9 +12,9 @@ export class RestQuery {
       if (!mongoQuery.$and && !mongoQuery.$or) {
         const conditions = [];
         for (const key in mongoQuery) {
-          conditions.push({ [key]: mongoQuery[key] });
+          conditions.push({[key]: mongoQuery[key]});
         }
-        mongoQuery = { $and: conditions };
+        mongoQuery = {$and: conditions};
       }
       clonedQuery.where = this.mongoParser.getRulesFromMongo(mongoQuery);
     }
@@ -41,16 +41,16 @@ export class RestQuery {
    */
   static merge(queries) {
     const _this = this;
-    return queries.slice(1).reduce(function(query, next) {
+    return queries.slice(1).reduce(function (query, next) {
       if (next.modelAlias !== query.modelAlias) {
         throw new Error('Can not merge querries of different modelAliass "' + query.modelAlias + '" != "' + next.modelAlias + '"');
       }
       /** initializing where*/
       let where = query.where;
       if (!where || Object.keys(where).length === 0) {
-        where = { $and: [] };
+        where = {$and: []};
       } else if (!where.$and) {
-        where = { $and: [where] };
+        where = {$and: [where]};
       }
       query.where = where;
       /** merging include queries*/
@@ -92,17 +92,17 @@ export class RestQuery {
     return this.execute({
       method: 'get',
       params: {
-        query: Object.assign({}, options, { where: { id: id }}), queryMethod: 'findOne'
+        query: Object.assign({}, options, {where: {id: id}}), queryMethod: 'findOne'
       }
     });
   }
 
   paginate(query) {
-    return this.execute({ method: 'get', params: { query: query, queryMethod: 'paginate' }});
+    return this.execute({method: 'get', params: {query: query, queryMethod: 'paginate'}});
   }
 
   findAll(query) {
-    return this.execute({ method: 'get', params: { query: query, queryMethod: 'findAll' }});
+    return this.execute({method: 'get', params: {query: query, queryMethod: 'findAll'}});
   }
 
   create(data) {

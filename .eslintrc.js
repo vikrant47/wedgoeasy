@@ -8,8 +8,10 @@ module.exports = {
   plugins: ["react-hooks"],
   parserOptions: {
     "sourceType": "module",
-    'parser': 'babel-eslint',
-    'ecmaVersion': 'es7',
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
   },
   extends: ['eslint:recommended'],
 

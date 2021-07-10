@@ -247,4 +247,3 @@ export class Engine {
   }
 }
 
-window.Engine = Engine;

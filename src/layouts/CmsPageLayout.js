@@ -1,26 +1,22 @@
-import { Fragment } from "react";
-import { HeaderOne } from "../components/Header";
-import { FooterOne } from "../components/Footer";
+import {Fragment} from "react";
+import {HeaderOne} from "../components/Header";
+import {FooterOne} from "../components/Footer";
+import {CMS_SECTION_TYPES} from "../modules/cms/enums/section.types";
+import {CmsSection} from "../modules/cms/models/cms.section";
 
-const CmsPageLayout = ({ children, navPositionClass }) => {
+const CmsPageLayout = ({children, page}) => {
+  const sections = page.pageView.sections;
   return (
     <Fragment>
-      {children}
+      {sections.map((sec, index) => {
+        const section = new CmsSection(sec);
+        const sectionType = section.getType();
+        const Component = section.getSectionComponent();
+        return (<div key={index} className={"section-wrapper" + sectionType.name} id={section.id + '_' + index}>
+          <Component section={section}></Component>
+        </div>);
+      })}
     </Fragment>
   );
 };
-// This function gets called at build time
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts
-  const res = await fetch('https://.../posts')
-  const posts = await res.json()
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
-}
 export default CmsPageLayout;

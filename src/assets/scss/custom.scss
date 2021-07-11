@@ -1,0 +1,20 @@
+.page-wrapper {
+  .top-header {
+    display: none !important;
+  }
+  .logo-dark{
+    display: none;
+  }
+  .logo-light{
+    display: block;
+  }
+  .section-wrapper-header_section_type{
+    background-color: #e12685;
+    .contact-phone span{
+      color: white;
+    }
+  }
+  .header-categories-wrap .category-menu-trigger ,.search-btn-two{
+    background-color: #aa0b6a;
+  }
+}

@@ -8,7 +8,7 @@ const CmsPageLayout = ({ children, page }) => {
         const section = new CmsSection(sec);
         const sectionType = section.getType();
         const Component = section.getSectionComponent();
-        return (<div key={index} className={`section-wrapper${sectionType.name}`} id={`${section.id}_${index}`}>
+        return (<div key={index} className={`section-wrapper-${sectionType.name}`} id={`${section.id}_${index}`}>
           <Component section={section}/>
         </div>);
       })}

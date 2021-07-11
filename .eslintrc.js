@@ -106,6 +106,8 @@ module.exports = {
     'no-extra-bind': 2,
     'no-param-reassign': 0,
     'no-underscore-dangle': 0,
+    'lines-between-class-members': 0,
+    'dot-notation': 1,
     'no-extra-boolean-cast': 2,
     'no-extra-parens': [2, 'functions'],
     'no-fallthrough': 2,

@@ -116,7 +116,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
               </div>
               <div className='d-none d-lg-block'>
                 {/* category menu */}
-                <CategoryMenuThree categoryMenuStyle='category-menu-trigger--style-two' />
+                {/* <CategoryMenuThree categoryMenuStyle='category-menu-trigger--style-two' />*/}
               </div>
             </Col>
             <Col lg={9} xs={6}>

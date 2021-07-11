@@ -1,19 +1,19 @@
-import {CMS_SECTION_TYPES} from "../enums/section.types";
+import { CMS_SECTION_TYPES } from '../enums/section.types';
 
 export class CmsSection {
   section;
 
-  /**@param section string*/
+  /** @param section string*/
   constructor(section) {
     this.section = section;
   }
 
-  /**@return string*/
+  /** @return string*/
   getType() {
     return this.section.ref_section_type_id;
   }
 
-  /**@return string|Function*/
+  /** @return string|Function*/
   getSectionComponent() {
     const sectionType = this.getType();
     const component = CMS_SECTION_TYPES[sectionType.name];
@@ -33,5 +33,6 @@ export class CmsSection {
     if (this.section.contents) {
       return this.section.contents;
     }
+    return null;
   }
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import {Container, Row, Col} from "react-bootstrap";
 import Swiper from "react-id-swiper";
 import {FiChevronLeft, FiChevronRight} from "react-icons/fi";
+import {Engine} from "../../../modules/engine/core/engine";
 
 const HomeBanner = ({section}) => {
   const heroSliderData = section.getContents();
@@ -38,7 +39,7 @@ const HomeBanner = ({section}) => {
             return (
               <div
                 className="hero-slider__slide bg-image"
-                style={{backgroundImage: `url(${single.ref_image})`}}
+                style={{backgroundImage: `url(${Engine.media(single.ref_image)})`}}
                 key={key}
               >
                 <div className="hero-slider__content-wrapper">

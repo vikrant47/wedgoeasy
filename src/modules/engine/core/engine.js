@@ -82,7 +82,7 @@ export class Engine {
         Object.assign(children, transient);
       }
     }
-    return { current, children };
+    return {current, children};
   }
 
   static isTransientProp(parsedTransients, field) {
@@ -121,9 +121,9 @@ export class Engine {
         const marshalled = {};
         const parsedTransients = this.parseTransients(object, options);
         for (const key in object) {
-          if (typeof object[key] !== undefined && !this.isTransientProp(parsedTransients, key)) {
+          if (typeof object[key] !== 'undefined' && !this.isTransientProp(parsedTransients, key)) {
             // console.log('marshaling children ', key, { transients: parsedTransients.children[key] });
-            marshalled[key] = this.marshall(object[key], { transients: parsedTransients.children[key] });
+            marshalled[key] = this.marshall(object[key], {transients: parsedTransients.children[key]});
           }
         }
         return marshalled;
@@ -242,8 +242,13 @@ export class Engine {
       setTimeout(resolve, timeout);
     });
   }
+
   static isUUID(str) {
     return str.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+  }
+
+  static media(file) {
+    return (process.env.MEDIA_SERVER_URL || 'http://localhost:8080/api/engine/media') + (file || '');
   }
 }
 

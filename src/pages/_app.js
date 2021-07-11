@@ -21,28 +21,8 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, reduxStore } = this.props;
-
     return (
       <>
-        <Head>
-          <title>Oility | React Next JS Multipurpose eCommerce Template</title>
-          <meta
-            name='description'
-            content='Oility is Powerful React Next JS Template For Any eCommerce Website. The template is built for sell Fashion Products, Shoes, Bags, Cosmetics, Clothes, Sunglasses, Furniture, Kids Products, Electronics, Stationery Products and Sporting Goods.'
-          />
-          <meta
-            name='keywords'
-            content='ecommerce, electronics store, Fashion store, furniture store,  react, next js, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store'
-          />
-          <link
-            href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap'
-            rel='stylesheet'
-          />
-          <link
-            href='https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap'
-            rel='stylesheet'
-          />
-        </Head>
         <ToastProvider placement='bottom-left'>
           <Provider store={reduxStore}>
             <PersistGate loading={<Preloader/>} persistor={this.persistor}>

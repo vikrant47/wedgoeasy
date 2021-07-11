@@ -1,6 +1,5 @@
-import {RestQuery} from "../../engine/services/rest.query";
 import {TenantService} from "../../engine/services/tenant.service";
-import {Engine} from "../../engine/core/engine";
+import {Engine} from '../../engine/core/engine';
 
 export class CmsRoute {
   static PAGE_API_PATH = '/api/cms/pages/data';
@@ -13,7 +12,7 @@ export class CmsRoute {
 
   async loadPageData() {
     this.pageData = await TenantService.request({
-      url: CmsRoute.PAGE_API_PATH + '/' + this.route,
+      url: `${CmsRoute.PAGE_API_PATH}/${this.route}`,
       method: 'get'
     });
     return this;

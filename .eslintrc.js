@@ -1,25 +1,50 @@
 module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true,
-    es6: true
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
   },
-  plugins: ["react-hooks"],
-  parserOptions: {
-    "sourceType": "module",
-    "ecmaVersion": 6,
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    // "plugin:react-hooks/recommended",
+    // always put prettier at last
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
+      "jsx": true // enable linting for jsx files
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
   },
-  extends: ['eslint:recommended'],
-
-  // add your custom rules here
-  //it is base on https://github.com/vuejs/eslint-config-vue
-  rules: {
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
+    "react/react-in-jsx-scope": "off",
+    // NextJs specific fix: allow jsx syntax in js files
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}], //should add ".ts" if typescript project
+    "react/display-name": 1,
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "react/prop-types": [0],
+    "import/prefer-default-export": "off",
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
       'before': true,
@@ -79,6 +104,8 @@ module.exports = {
     'no-ex-assign': 2,
     'no-extend-native': 2,
     'no-extra-bind': 2,
+    'no-param-reassign': 0,
+    'no-underscore-dangle': 0,
     'no-extra-boolean-cast': 2,
     'no-extra-parens': [2, 'functions'],
     'no-fallthrough': 2,

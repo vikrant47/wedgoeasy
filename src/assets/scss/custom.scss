@@ -9,12 +9,31 @@
     display: block;
   }
   .section-wrapper-header_section_type{
-    background-color: #e12685;
+    .middle-header {
+      background-color: #bc348c;
+      padding: 5px;
+    }
     .contact-phone span{
       color: white;
     }
+    .input-group > .form-control, .input-group > .form-control-plaintext, .input-group > .custom-select, .input-group > .custom-file{
+      height: 35px;
+    }
+    .search-btn-two{
+      padding: 0px 30px;
+    }
+    .product-search-form select {
+      height: 35px;
+      position: relative;
+      width: 100%;
+      padding: 5px 35px 5px 15px;
+      color: #6c757d;
+      border: 1px solid #ced4da;
+      -webkit-appearance: none;
+      appearance: none;
+    }
   }
   .header-categories-wrap .category-menu-trigger ,.search-btn-two{
-    background-color: #aa0b6a;
+    background-color: #ff0099;
   }
 }

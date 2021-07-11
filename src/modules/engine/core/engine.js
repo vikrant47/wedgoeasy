@@ -248,6 +248,9 @@ export class Engine {
   }
 
   static media(file) {
+    if (file.startsWith('http:') || file.startsWith('https:')) {
+      return file;
+    }
     return (process.env.MEDIA_SERVER_URL || 'http://localhost:8080/api/engine/media') + (file || '');
   }
 }

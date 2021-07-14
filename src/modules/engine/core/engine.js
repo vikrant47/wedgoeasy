@@ -248,6 +248,9 @@ export class Engine {
   }
 
   static media(file) {
+    if (!file) {
+      return file;
+    }
     if (file.startsWith('http:') || file.startsWith('https:')) {
       return file;
     }

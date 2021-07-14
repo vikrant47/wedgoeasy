@@ -1,5 +1,6 @@
-import {TenantService} from "../../engine/services/tenant.service";
+import {RestService} from "../services/rest.service";
 import {Engine} from '../../engine/core/engine';
+import {BackendRestService} from "../services/backend.rest.service";
 
 export class CmsRoute {
   static PAGE_API_PATH = '/api/cms/pages/data';
@@ -11,7 +12,7 @@ export class CmsRoute {
   }
 
   async loadPageData() {
-    this.pageData = await TenantService.request({
+    this.pageData = await BackendRestService.instance().data({
       url: `${CmsRoute.PAGE_API_PATH}/${this.route}`,
       method: 'get'
     });
@@ -21,4 +22,6 @@ export class CmsRoute {
   toPojo() {
     return Engine.clone(this);
   }
+
+
 }

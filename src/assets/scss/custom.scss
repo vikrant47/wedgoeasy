@@ -52,5 +52,14 @@
     background-color: #ff0099;
   }
 
+  /***Login button*/
+  .btn-fill-out::before, .btn-fill-out::after {
+    background-color: #ff0099;
+    border: 1px solid #ff0099;
+  }
+
+  .btn {
+    border-radius: .125rem;
+  }
 
 }

@@ -1,10 +1,10 @@
 import {MongoParser} from './mongo.parser';
-import {TenantService} from './tenant.service';
+import {RestService} from '../../cms/services/rest.service';
 import * as _ from 'lodash';
 
 export class RestQuery {
   static mongoParser = new MongoParser();
- 
+
   static toQueryBuilderRules(query) {
     const clonedQuery = JSON.parse(JSON.stringify(query));
     let mongoQuery = clonedQuery.where;
@@ -145,13 +145,13 @@ export class RestQuery {
       data.query = RestQuery.toQueryBuilderRules(data.query);
     }
     data.modelAlias = this.modelAlias.replaceAll('.', '\\');
-    return TenantService.request(Object.assign({
+    return RestService.request(Object.assign({
       url: '/api/engine/models/' + this.modelAlias + '/query',
       queryMethod: options.method
     }, options));
   }
 
   request() {
-    return TenantService.request.apply(TenantService, arguments);
+    return RestService.request.apply(RestService, arguments);
   }
 }

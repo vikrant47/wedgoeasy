@@ -1,18 +1,28 @@
 import axios from 'axios';
+import getConfig from 'next/config';
 import { Notification } from '../modules/cms/models/notification';
+import { AuthManager } from '../modules/cms/services/auth.manager';
+import { NavigationManager } from '../modules/cms/services/navigation.manager';
+
+const { publicRuntimeConfig } = getConfig();
+const authManager = AuthManager.instance();
+
+export class HttpRequest {
+
+}
 
 // Create axios instance
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: process.env.REQUEST_TIMEOUT * 1 // Request timeout
+  // baseURL: publicRuntimeConfig.BASE_API, // api 的 base_url
+  timeout: publicRuntimeConfig.REQUEST_TIMEOUT // Request timeout
 });
 
 // request interceptor
 service.interceptors.request.use((config) => {
-  console.debug('Request | ', config);
-  /*    if (getToken()) {
-              config.headers['Authorization'] = getToken(); // Let each request carry a custom token. Please modify according to the actual situation
-            }*/
+  console.debug('Request | ', config.url, config.headers, config.method, config.data);
+  if (authManager.getToken()) {
+    config.headers.Authorization = authManager.getToken(); // Let each request carry a custom token. Please modify according to the actual situation
+  }
   Object.assign(config.headers, {
     'Content-Type': 'application/json',
     Accept: 'application/json'
@@ -27,16 +37,15 @@ service.interceptors.request.use((config) => {
 
 // response Interceptor
 service.interceptors.response.use((response) => {
-  console.debug('Response | ', response);
+  console.debug('Response | ', response.status);
   const code = response.status;
   if (code < 200 || code > 300) {
     Notification.instance().error({
       title: response.message
     });
-    return Promise.reject('error');
-  } else {
-    return response.data;
+    throw new Error(`Invalid response ${code}`);
   }
+  return response.data;
 }, (error) => {
   console.error('Response | ', error.response); // for debug
   let code = 0;
@@ -57,8 +66,9 @@ service.interceptors.response.use((response) => {
         title: 'Unauthorized Access',
         duration: 5000
       });
+      // CmsRoute.navigate(publicRuntimeConfig.LOGIN_PAGE);
     } else if (code === 403) {
-      // todo
+      NavigationManager.navigate(publicRuntimeConfig.UNAUTHOROZED_PAGE);
     } else {
       const errorMsg = error.response.data.message;
       if (errorMsg !== undefined) {
@@ -66,6 +76,7 @@ service.interceptors.response.use((response) => {
           title: errorMsg,
           duration: 5000
         });
+        NavigationManager.navigate(publicRuntimeConfig.ERROR_PAGE);
       }
     }
   } else {

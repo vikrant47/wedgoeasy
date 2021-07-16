@@ -39,6 +39,13 @@ export class RestService {
     return process.env.BASE_API;
   }
 
+  async data(options) {
+    const response = await this.request(options);
+    if (!(response instanceof Error)) {
+      return response.data;
+    }
+    return response;
+  }
   /** Make request to current tenant*/
   request(options) {
     options = { ...options };

@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookF, FaGooglePlusG } from 'react-icons/fa';
 import { Router } from 'next/router';
 import { useToasts } from 'react-toast-notifications';
+import { useEffect } from 'react';
 import { AuthManager } from '../../../modules/cms/services/auth.manager';
 
 const Login = () => {
@@ -11,18 +12,21 @@ const Login = () => {
     const form = event.target;
     try {
       await AuthManager.instance().authenticate(form.email.value, form.password.value, form.rememberMe.value);
-    } catch (e) {
-      if (e.code === 401) {
-        const { addToast } = useToasts();
-        addToast('Invalid Email or Password', {
-          appearance: 'error',
-          autoDismiss: true,
+    } catch (error) {
+      console.error('error while auth ', error);
+      if (error.status === 401) {
+        useEffect(() => {
+          const { addToast } = useToasts();
+          addToast('Invalid Email or Password', {
+            appearance: 'error',
+            autoDismiss: true,
+          });
         });
       } else {
-        throw e;
+        // throw e;
       }
     }
-    Router.push('/p/home/en');
+    // Router.push('/p/home/en');
   };
   return (
     <div className='login-content space-pt--r100 space-pb--r100'>

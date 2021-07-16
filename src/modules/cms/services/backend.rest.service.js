@@ -41,12 +41,7 @@ export class BackendRestService extends RestService {
     }
     );
   }
-
-  async data(options) {
-    const response = await super.request(options);
-    if (!(response instanceof Error)) {
-      return response.data;
-    }
-    return response;
+  getBaseUrl() {
+    return 'http://localhost:8080';
   }
 }

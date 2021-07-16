@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
 import {Engine} from "../../engine/core/engine";
+import {BackendRestService} from "./backend.rest.service";
 
 const TokenKey = process.env.ACCESS_TOKEN_KEY;
 
@@ -19,12 +20,13 @@ export class AuthManager {
   }
 
   async authenticate(login, password, rememberMe = false) {
-    const {FrontendRestService} = require("./frontend.rest.service");
-    const result = await FrontendRestService.instance().request({
+    const {BackendRestService} = require("./backend.rest.service");
+    const result = await BackendRestService.instance().request({
       url: `${AuthManager.LOGIN_API}`,
       method: 'POST',
       data: {"login": login, "password": password}
     });
+    throw result;
     this.auth = result.contents;
     this.setToken(this.auth.access_token, this.auth.expires_in, rememberMe);
     return this;

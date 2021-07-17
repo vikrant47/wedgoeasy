@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Engine } from '../../../modules/engine/core/engine';
 
-const CmsHead = ({ children, page }) => {
+const CmsHead = ({ children, page, website }) => {
   const router = useRouter();
   const { pageView } = page;
   return (<Head>

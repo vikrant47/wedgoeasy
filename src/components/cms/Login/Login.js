@@ -29,7 +29,7 @@ const Login = () => {
     // Router.push('/p/home/en');
   };
   return (
-    <div className='login-content space-pt--r100 space-pb--r100'>
+    <div className='login-content space-pt--r70 space-pb--r70'>
       <Container>
         <Row className='justify-content-center'>
           <Col xl={6} md={10}>

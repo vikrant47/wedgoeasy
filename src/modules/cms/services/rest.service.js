@@ -46,11 +46,16 @@ export class RestService {
     }
     return response;
   }
+
   /** Make request to current tenant*/
-  request(options) {
+  async request(options) {
     options = { ...options };
     options.url = this.getBaseUrl() + options.url;
-    return this.axiosInstance(options);
+    const response = await this.axiosInstance(options);
+    if (response.error) {
+      throw response.error;
+    }
+    return response;
   }
 }
 

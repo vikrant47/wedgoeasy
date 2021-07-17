@@ -12,7 +12,7 @@
     display: block;
   }
 
-  .section-wrapper-header_section_type {
+  .header-wrapper, .section-wrapper-header_section_type {
     .navigation > ul > li > .nav-link {
       font-size: 14px;
       font-weight: 500;
@@ -21,7 +21,7 @@
 
     .middle-header {
       background-color: #bc348c;
-      padding: 5px;
+      padding: 12px;
     }
 
     .contact-phone span {
@@ -29,7 +29,7 @@
     }
 
     .input-group > .form-control, .input-group > .form-control-plaintext, .input-group > .custom-select, .input-group > .custom-file {
-      height: 35px;
+      height: 40px;
     }
 
     .search-btn-two {
@@ -37,7 +37,7 @@
     }
 
     .product-search-form select {
-      height: 35px;
+      height: 40px;
       position: relative;
       width: 100%;
       padding: 5px 35px 5px 15px;
@@ -62,4 +62,8 @@
     border-radius: .125rem;
   }
 
+  /**footer**/
+  .bg--default {
+    background-color: #ff0099;
+  }
 }

@@ -13,7 +13,7 @@ import MobileCategoryMenuTwo from './elements/MobileCategoryMenuTwo';
 import MiniCart from './elements/MiniCart';
 import CategoryMenuThree from './elements/CategoryMenuThree';
 
-const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
+const HeaderSix = ({ website, cartItems, wishlistItems, navPositionClass }) => {
   const [scroll, setScroll] = useState(0);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [offCanvasMobileMenuActive, setOffCanvasMobileMenuActive] = useState(
@@ -44,7 +44,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
       }`}
     >
       {/* header top */}
-      <HeaderTopThree containerClass='container' />
+      <HeaderTopThree containerClass='container'/>
 
       {/* middle header */}
       <div className='middle-header dark-skin space-pt--20 space-pb--20'>
@@ -93,7 +93,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
               </form>
             </div>
             <div className='contact-phone'>
-              <FiPhoneCall />
+              <FiPhoneCall/>
               <span>123-456-7689</span>
             </div>
           </div>
@@ -111,7 +111,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
                     setOffCanvasMobileCategoryMenuActive(true);
                   }}
                 >
-                  <IoIosMenu />
+                  <IoIosMenu/>
                 </button>
               </div>
               <div className='d-none d-lg-block'>
@@ -122,13 +122,13 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
             <Col lg={9} xs={6}>
               <div className='d-flex align-items-center justify-content-end'>
                 {/* navigation */}
-                <Navigation positionClass={navPositionClass} />
+                <Navigation positionClass={navPositionClass}/>
                 {/* icons */}
                 <ul className='header-icons d-flex justify-content-end'>
                   <li>
                     <Link href='/other/my-account'>
                       <a className='nav-link pr-3'>
-                        <BsPerson />
+                        <BsPerson/>
                       </a>
                     </Link>
                   </li>
@@ -136,7 +136,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
                   <li className='position-relative'>
                     <Link href='/other/wishlist'>
                       <a className='nav-link mini-cart-trigger pr-3'>
-                        <AiOutlineHeart />
+                        <AiOutlineHeart/>
                         {wishlistItems.length > 0 ? (
                           <span className='cart-count cart-count--mobile'>
                             {wishlistItems.length}
@@ -151,7 +151,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
                   <li className='d-none d-lg-block position-relative'>
                     <Link href='/other/cart'>
                       <a className='nav-link mini-cart-trigger pr-3 pr-lg-0'>
-                        <AiOutlineShoppingCart />
+                        <AiOutlineShoppingCart/>
                         {cartItems.length > 0 ? (
                           <span className='cart-count'>{cartItems.length}</span>
                         ) : (
@@ -160,13 +160,13 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
                       </a>
                     </Link>
                     {/* mini cart */}
-                    <MiniCart cartItems={cartItems} />
+                    <MiniCart cartItems={cartItems}/>
                   </li>
 
                   <li className='d-block d-lg-none position-relative'>
                     <Link href='/other/cart'>
                       <a className='nav-link mini-cart-trigger pr-3 pr-lg-0'>
-                        <AiOutlineShoppingCart />
+                        <AiOutlineShoppingCart/>
                         {cartItems.length > 0 ? (
                           <span className='cart-count cart-count--mobile'>
                             {cartItems.length}
@@ -185,7 +185,7 @@ const HeaderSix = ({ cartItems, wishlistItems, navPositionClass }) => {
                         setOffCanvasMobileMenuActive(true);
                       }}
                     >
-                      <IoIosMenu />
+                      <IoIosMenu/>
                     </button>
                   </li>
                 </ul>

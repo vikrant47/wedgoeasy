@@ -71,6 +71,7 @@ module.exports = {
     }],
     'handle-callback-err': [2, '^(err|error)$'],
     'indent': [2, 2, {
+      ignoredNodes: ["TemplateLiteral"],
       'SwitchCase': 1
     }],
     'jsx-quotes': [2, 'prefer-single'],
@@ -97,6 +98,7 @@ module.exports = {
     'no-control-regex': 0,
     'no-delete-var': 2,
     'no-dupe-args': 2,
+    'class-methods-use-this': 1,
     'no-dupe-class-members': 2,
     'no-dupe-keys': 2,
     'no-duplicate-case': 2,

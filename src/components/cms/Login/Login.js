@@ -1,26 +1,33 @@
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FaFacebookF, FaGooglePlusG } from 'react-icons/fa';
-import { Router } from 'next/router';
-import { useToasts } from 'react-toast-notifications';
-import { useEffect } from 'react';
-import { AuthManager } from '../../../modules/cms/services/auth.manager';
 
+import getConfig from 'next/config';
+import { AuthManager } from '../../../modules/cms/services/auth.manager';
+import { NotificationService } from '../../../modules/cms/services/notification.service';
+import { NavigationManager } from '../../../modules/cms/services/navigation.manager';
+
+const { publicRuntimeConfig } = getConfig();
 const Login = () => {
-  const login = async(event, addToast) => {
+  if (AuthManager.instance().isLoggedIn()) {
+    NavigationManager.instance().navigate(publicRuntimeConfig.HOME_PAGE);
+    return <div>Redirecting...</div>;
+  }
+  let errorMessage = '';
+  const login = async(event) => {
     event.preventDefault();
     const form = event.target;
     try {
       await AuthManager.instance().authenticate(form.email.value, form.password.value, form.rememberMe.value);
+      NavigationManager.instance().navigate(publicRuntimeConfig.HOME_PAGE);
     } catch (error) {
       console.error('error while auth ', error);
       if (error.status === 401) {
-        useEffect(() => {
-          const { addToast } = useToasts();
-          addToast('Invalid Email or Password', {
-            appearance: 'error',
-            autoDismiss: true,
-          });
+        errorMessage = 'Invalid Email or Password';
+        NotificationService.instance().showMessage({
+          message: errorMessage,
+          appearance: 'error',
+          autoDismiss: true,
         });
       } else {
         // throw e;
@@ -29,7 +36,7 @@ const Login = () => {
     // Router.push('/p/home/en');
   };
   return (
-    <div className='login-content space-pt--r70 space-pb--r70'>
+    <div className='login-content pt-5 pb-5'>
       <Container>
         <Row className='justify-content-center'>
           <Col xl={6} md={10}>
@@ -85,6 +92,7 @@ const Login = () => {
                     >
                       Log in
                     </button>
+                    <div className='error-txt'>{errorMessage}</div>
                   </div>
                 </form>
                 <div className='different-login'>

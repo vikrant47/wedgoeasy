@@ -20,7 +20,7 @@
     }
 
     .middle-header {
-      background-color: #bc348c;
+      background-color: #bc345a;
       padding: 12px;
     }
 
@@ -49,13 +49,13 @@
   }
 
   .header-categories-wrap .category-menu-trigger, .search-btn-two {
-    background-color: #ff0099;
+    background-color: #f83c81;
   }
 
   /***Login button*/
   .btn-fill-out::before, .btn-fill-out::after {
-    background-color: #ff0099;
-    border: 1px solid #ff0099;
+    background-color: #f83c81;
+    border: 1px solid #f83c81;
   }
 
   .btn {
@@ -64,6 +64,6 @@
 
   /**footer**/
   .bg--default {
-    background-color: #ff0099;
+    background-color: #f83c81;
   }
 }

@@ -1,10 +1,18 @@
-const w = (typeof window === 'undefined') ? null : window;
 
 export class NavigationManager {
-  static navigate(path, title) {
-    if (!path) {
-      throw new Error(`Invalid path to navigate ${path}`);
-    }
-    w && w.history.pushState({path}, title, path);
+  /** @type instance NavigationService*/
+  static _instance = new NavigationManager();
+
+  /** @return NavigationManager*/
+  static instance() {
+    return NavigationManager._instance;
+  }
+
+  initialize(router) {
+    this.router = router;
+  }
+
+  navigate(path) {
+    this.router.push(path);
   }
 }

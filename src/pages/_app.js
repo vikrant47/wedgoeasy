@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
-import { ToastProvider } from 'react-toast-notifications';
+import { ToastProvider, useToasts } from 'react-toast-notifications';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import withReduxStore from '../lib/with-redux-store';

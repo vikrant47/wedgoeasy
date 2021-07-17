@@ -1,16 +1,16 @@
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import {
   ADD_TO_CART,
   DECREASE_QUANTITY,
   DELETE_FROM_CART,
   DELETE_ALL_FROM_CART
-} from "../actions/cartActions";
+} from '../actions/cartActions';
 
 const initState = [];
 
 const cartReducer = (state = initState, action) => {
-  const cartItems = state,
-    product = action.payload;
+  const cartItems = state;
+  const product = action.payload;
 
   if (action.type === ADD_TO_CART) {
     // for non variant products
@@ -25,67 +25,65 @@ const cartReducer = (state = initState, action) => {
             cartItemId: uuidv4()
           }
         ];
-      } else {
-        return cartItems.map((item) =>
-          item.cartItemId === cartItem.cartItemId
-            ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1
-              }
-            : item
-        );
       }
+      return cartItems.map((item) =>
+        item.cartItemId === cartItem.cartItemId
+          ? {
+            ...item,
+            quantity: product.quantity
+              ? item.quantity + product.quantity
+              : item.quantity + 1
+          }
+          : item
+      );
+
       // for variant products
-    } else {
-      const cartItem = cartItems.filter(
-        (item) =>
-          item.id === product.id &&
+    }
+    const cartItem = cartItems.filter(
+      (item) =>
+        item.id === product.id &&
           product.selectedProductColor &&
           product.selectedProductColor === item.selectedProductColor &&
           product.selectedProductSize &&
           product.selectedProductSize === item.selectedProductSize &&
           (product.cartItemId ? product.cartItemId === item.cartItemId : true)
-      )[0];
+    )[0];
 
-      if (cartItem === undefined) {
-        return [
-          ...cartItems,
-          {
-            ...product,
-            quantity: product.quantity ? product.quantity : 1,
-            cartItemId: uuidv4()
-          }
-        ];
-      } else if (
-        cartItem !== undefined &&
+    if (cartItem === undefined) {
+      return [
+        ...cartItems,
+        {
+          ...product,
+          quantity: product.quantity ? product.quantity : 1,
+          cartItemId: uuidv4()
+        }
+      ];
+    } if (
+      cartItem !== undefined &&
         (cartItem.selectedProductColor !== product.selectedProductColor ||
           cartItem.selectedProductSize !== product.selectedProductSize)
-      ) {
-        return [
-          ...cartItems,
-          {
-            ...product,
-            quantity: product.quantity ? product.quantity : 1,
-            cartItemId: uuidv4()
-          }
-        ];
-      } else {
-        return cartItems.map((item) =>
-          item.cartItemId === cartItem.cartItemId
-            ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1,
-                selectedProductColor: product.selectedProductColor,
-                selectedProductSize: product.selectedProductSize
-              }
-            : item
-        );
-      }
+    ) {
+      return [
+        ...cartItems,
+        {
+          ...product,
+          quantity: product.quantity ? product.quantity : 1,
+          cartItemId: uuidv4()
+        }
+      ];
     }
+    return cartItems.map((item) =>
+      item.cartItemId === cartItem.cartItemId
+        ? {
+          ...item,
+          quantity: product.quantity
+            ? item.quantity + product.quantity
+            : item.quantity + 1,
+          selectedProductColor: product.selectedProductColor,
+          selectedProductSize: product.selectedProductSize
+        }
+        : item
+    );
   }
 
   if (action.type === DECREASE_QUANTITY) {
@@ -95,13 +93,12 @@ const cartReducer = (state = initState, action) => {
           (cartItem) => cartItem.cartItemId !== product.cartItemId
         );
       return remainingItems(cartItems, product);
-    } else {
-      return cartItems.map((item) =>
-        item.cartItemId === product.cartItemId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      );
     }
+    return cartItems.map((item) =>
+      item.cartItemId === product.cartItemId
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    );
   }
 
   if (action.type === DELETE_FROM_CART) {
@@ -113,9 +110,7 @@ const cartReducer = (state = initState, action) => {
   }
 
   if (action.type === DELETE_ALL_FROM_CART) {
-    return cartItems.filter((item) => {
-      return false;
-    });
+    return cartItems.filter((item) => false);
   }
 
   return state;

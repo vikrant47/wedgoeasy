@@ -23,7 +23,9 @@ const HeaderSix = ({ website, cartItems, wishlistItems, navPositionClass }) => {
     offCanvasMobileCategoryMenuActive,
     setOffCanvasMobileCategoryMenuActive
   ] = useState(false);
-
+  const handleScroll = () => {
+    setScroll(window.scrollY);
+  };
   useEffect(() => {
     const header = document.querySelector('.header-wrap');
     setHeaderHeight(header.offsetHeight);
@@ -32,10 +34,6 @@ const HeaderSix = ({ website, cartItems, wishlistItems, navPositionClass }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const handleScroll = () => {
-    setScroll(window.scrollY);
-  };
 
   return (
     <header

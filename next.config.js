@@ -2,7 +2,7 @@ module.exports = {
   publicRuntimeConfig: {
     // Will be available on both server and client,
     ENV: 'development',
-    ACCESS_TOKEN_KEY: 'AUTH_TOKEY',
+    ACCESS_TOKEN_KEY: 'ACCESS_TOKEN',
     // interface address,
     REQUEST_TIMEOUT: 12000,
     BASE_API: 'http://localhost:8080',

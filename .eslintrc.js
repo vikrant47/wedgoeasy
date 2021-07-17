@@ -45,6 +45,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "react/prop-types": [0],
+    'react/no-array-index-key': 0,
     "import/prefer-default-export": "off",
     'accessor-pairs': 2,
     'arrow-spacing': [2, {
@@ -70,6 +71,7 @@ module.exports = {
       'after': true
     }],
     'handle-callback-err': [2, '^(err|error)$'],
+    "template-curly-spacing" : "off",
     'indent': [2, 2, {
       ignoredNodes: ["TemplateLiteral"],
       'SwitchCase': 1
@@ -204,7 +206,6 @@ module.exports = {
     'spaced-comment': [2, 'always', {
       'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
     }],
-    'template-curly-spacing': [2, 'never'],
     'use-isnan': 2,
     'valid-typeof': 2,
     'wrap-iife': [2, 'any'],

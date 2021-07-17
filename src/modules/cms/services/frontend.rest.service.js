@@ -1,8 +1,7 @@
 import getConfig from 'next/config';
 import { RestService } from './rest.service';
 import { AuthManager } from './auth.manager';
-import { Notification } from '../models/notification';
-import { NavigationManager } from './navigation.manager';
+import { NotificationService } from './notification.service';
 
 const { publicRuntimeConfig } = getConfig();
 const authManager = AuthManager.instance();
@@ -50,7 +49,7 @@ export class FrontendRestService extends RestService {
       console.debug('Frontend Response | ', response.status);
       const code = response.status;
       if (code < 200 || code > 300) {
-        Notification.instance().error({
+        NotificationService.instance().error({
           title: response.message
         });
       }
@@ -59,14 +58,14 @@ export class FrontendRestService extends RestService {
       console.error('Frontend Response | ', error.response); // for debug
       const code = error.response.status;
       if (error.toString().indexOf('Error: timeout') !== -1) {
-        Notification.instance().error({
+        NotificationService.instance().error({
           title: 'Network request timed out',
           duration: 5000
         });
       }
       if (code) {
         if (code === 401) {
-          Notification.instance().error({
+          NotificationService.instance().error({
             title: 'Unauthorized Access',
             duration: 5000
           });
@@ -76,7 +75,7 @@ export class FrontendRestService extends RestService {
         } else {
           const errorMsg = error.response.data.message;
           if (errorMsg !== undefined) {
-            Notification.instance().error({
+            NotificationService.instance().error({
               title: errorMsg,
               duration: 5000
             });
@@ -84,7 +83,7 @@ export class FrontendRestService extends RestService {
           }
         }
       } else {
-        Notification.instance().error({
+        NotificationService.instance().error({
           title: 'Request failed',
           duration: 5000
         });

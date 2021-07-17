@@ -7,6 +7,11 @@ export class BackendRestService extends RestService {
     return this._instance;
   }
 
+  /** @return BackendRestService*/
+  withAuth() {
+    return require('./auth.backend.rest.service').AuthBackendRestService.instance();
+  }
+
   init() {
     this.interceptRequest();
     this.interceptResponse();
@@ -27,7 +32,7 @@ export class BackendRestService extends RestService {
     }, (error) => {
       // Do something with request error
       console.error('Request | ', error.request); // for debug
-      Promise.reject(error);
+      return { error: error.request };
     });
   }
 
@@ -37,10 +42,11 @@ export class BackendRestService extends RestService {
       return response;
     }, (error) => {
       console.error('Backend Response | ', error.response); // for debug
-      return error.response;
+      return { error: error.response };
     }
     );
   }
+
   getBaseUrl() {
     return 'http://localhost:8080';
   }

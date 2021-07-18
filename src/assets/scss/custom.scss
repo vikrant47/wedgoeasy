@@ -1,4 +1,8 @@
 .page-wrapper {
+  /**Log */
+  .logo-light{
+    width: 175px;
+  }
   /**Header CSS**/
   .top-header {
     display: none !important;
@@ -20,7 +24,7 @@
     }
 
     .middle-header {
-      background-color: #bc345a;
+      background-color: #e51a4cd1;
       padding: 12px;
     }
 
@@ -49,13 +53,13 @@
   }
 
   .header-categories-wrap .category-menu-trigger, .search-btn-two {
-    background-color: #f83c81;
+    background-color: #be2844;
   }
 
   /***Login button*/
   .btn-fill-out::before, .btn-fill-out::after {
-    background-color: #f83c81;
-    border: 1px solid #f83c81;
+    background-color: #be2844;
+    border: 1px solid #be2844;
   }
 
   .btn {
@@ -64,6 +68,6 @@
 
   /**footer**/
   .bg--default {
-    background-color: #f83c81;
+    background-color: #e51a4cd1;
   }
 }

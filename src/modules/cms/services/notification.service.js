@@ -27,6 +27,6 @@ export class NotificationService {
   }
 
   error(settings = {}) {
-    return this.showMessage(Object.assign(settings, { appearance: 'success' }));
+    return this.showMessage(Object.assign(settings, { appearance: 'error' }));
   }
 }

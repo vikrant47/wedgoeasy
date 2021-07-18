@@ -38,9 +38,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
+  const route = params.route.join('/');
   const website = CmsWebsite.instance();
   await website.load();
-  const cmsRoute = new CmsPage(params.route.join('/'));
+  const cmsRoute = new CmsPage(route);
   await cmsRoute.load();
 
   // Pass post data to the page via props

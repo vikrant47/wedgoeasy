@@ -12,9 +12,10 @@ const CmsPageLayout = ({ children, page, website }) => {
         </div>
         {sections.map((sec, index) => {
           const section = new CmsSection(sec);
+          console.log(JSON.stringify(section));
           const sectionType = section.getType();
           const Component = section.getSectionComponent();
-          return (<div key={index} className={`section-wrapper-${sectionType.name}`} id={`${section.id}_${index}`}>
+          return (<div key={index} className={`section-wrapper-${sectionType.name}`} id={`${sectionType.id}_${index}`}>
             <Component section={section}/>
           </div>);
         })}

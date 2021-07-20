@@ -19,6 +19,7 @@ module.exports = {
     UNAUTHOROZED_PAGE: '/p/unauthorized/en',
     NOT_FOUND_PAGE: '/p/notfound/en',
     ERROR_PAGE: '/p/500/en',
+    WEBSITE_FURL: '/wedgoeasy',
 
   }
 };

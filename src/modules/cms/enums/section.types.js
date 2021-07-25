@@ -8,7 +8,6 @@ export const CMS_SECTION_TYPES = {
   register_section_type: () => {
 
   },
-  two_column_section_type: () => {
-
-  },
+  two_column_section_type: () => require('../../../components/cms/TwoColumn/TwoColumn').default,
+  footer_section_type: () => require('../../../components/cms/Footer/Footer').default,
 };

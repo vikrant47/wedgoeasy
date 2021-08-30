@@ -44,7 +44,7 @@ const FashionOne = ({
 
 // This also gets called at build time
 export async function getStaticProps({ params }) {
-  const products = await new RestQuery('ecom_products').findAll();
+  const products = await new RestQuery('ecom_products').paginate();
   console.log(products);
   return { props: { products }};
 }

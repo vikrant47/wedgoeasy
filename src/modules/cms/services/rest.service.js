@@ -28,7 +28,7 @@ export class RestService {
   }
 
   static request(options) {
-    return this.instance.fetch(options);
+    return this.instance.request(options);
   }
 
   addInterceptor(type, interceptor) {

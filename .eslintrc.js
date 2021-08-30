@@ -36,6 +36,8 @@ module.exports = {
   },
   "plugins": ["react", "react-hooks"],
   "rules": {
+    "guard-for-in": 0,
+    "prefer-rest-params": 0,
     // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
     "react/react-in-jsx-scope": "off",
     // NextJs specific fix: allow jsx syntax in js files
